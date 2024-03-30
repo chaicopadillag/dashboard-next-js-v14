@@ -5,13 +5,15 @@ type FavoritePokemonState = {
     [id: string]: SimplePokemon
 }
 
-const initialState: FavoritePokemonState = {
-}
+const initialState: FavoritePokemonState = {}
 
 const pokemonSlice = createSlice({
     name: "favoritePokemons",
     initialState,
     reducers: {
+        setFavoritePokemons: (_, action: PayloadAction<FavoritePokemonState>) => {
+            return action.payload
+        },
         toggleFavoritePokemon: (state, action: PayloadAction<SimplePokemon>) => {
             const { id } = action.payload
             if (!!state[id]) {
@@ -27,6 +29,6 @@ const pokemonSlice = createSlice({
     }
 });
 
-export const { toggleFavoritePokemon } = pokemonSlice.actions
+export const { toggleFavoritePokemon, setFavoritePokemons } = pokemonSlice.actions
 
 export default pokemonSlice.reducer
